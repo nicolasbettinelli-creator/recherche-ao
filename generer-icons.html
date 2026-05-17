@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Générateur icônes AO</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f5f8;
+            padding: 30px;
+            text-align: center;
+        }
+
+        button {
+            background: #174f8a;
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        canvas {
+            display: block;
+            margin: 20px auto;
+            border-radius: 24px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Générateur d’icônes AO</h1>
+    <p>Clique sur les deux boutons pour télécharger les icônes.</p>
+
+    <button onclick="genererIcone(192)">Télécharger icon-192.png</button>
+    <button onclick="genererIcone(512)">Télécharger icon-512.png</button>
+
+    <canvas id="canvas" width="512" height="512"></canvas>
+
+    <script>
+        function dessinerIcone(taille) {
+            const canvas = document.getElementById("canvas");
+            canvas.width = taille;
+            canvas.height = taille;
+
+            const ctx = canvas.getContext("2d");
+
+            const gradient = ctx.createLinearGradient(0, 0, taille, taille);
+            gradient.addColorStop(0, "#0f2f57");
+            gradient.addColorStop(1, "#174f8a");
+
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, taille, taille);
+
+            ctx.fillStyle = "rgba(255, 255, 255, 0.14)";
+            ctx.beginPath();
+            ctx.arc(taille * 0.78, taille * 0.18, taille * 0.28, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = "white";
+            ctx.font = `900 ${taille * 0.30}px Arial`;
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText("AO", taille / 2, taille / 2);
+
+            ctx.font = `bold ${taille * 0.07}px Arial`;
+            ctx.fillText("Recherche", taille / 2, taille * 0.72);
+        }
+
+        function genererIcone(taille) {
+            dessinerIcone(taille);
+
+            const canvas = document.getElementById("canvas");
+            const lien = document.createElement("a");
+
+            lien.download = `icon-${taille}.png`;
+            lien.href = canvas.toDataURL("image/png");
+            lien.click();
+        }
+
+        dessinerIcone(512);
+    </script>
+
+</body>
+</html>

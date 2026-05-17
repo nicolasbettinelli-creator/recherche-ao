@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Recherche AO</title>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#174f8a">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="lockScreen" class="lock-screen">
+    <div class="lock-card">
+        <div class="lock-badge">AO</div>
+
+        <h1>Accès protégé</h1>
+        <p>Entre le mot de passe pour accéder à l’application.</p>
+
+        <input 
+            type="password" 
+            id="passwordInput" 
+            placeholder="Mot de passe"
+            autocomplete="off"
+        >
+
+        <button id="unlockBtn" class="unlock-btn">
+            Déverrouiller
+        </button>
+
+        <p id="passwordError" class="password-error"></p>
+    </div>
+</div>
+
+    <header class="app-header">
+        <div class="header-content">
+            <span class="app-badge">AO</span>
+            <h1>Recherche AO</h1>
+            <p>Recherche rapide des amendes d’ordre</p>
+            <p id="totalCount" class="total-count">Chargement de la base...</p>
+            <button id="themeToggleBtn" class="theme-toggle" type="button">
+    🌙 Mode nuit
+</button>
+
+            <button id="lockBtn" class="theme-toggle lock-app-btn" type="button">
+    🔒 Verrouiller
+</button>
+
+            <a href="a-propos.html" class="theme-toggle about-link">
+            ℹ️ À propos
+            </a>
+            
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="search-section">
+            <label for="searchInput">Rechercher une amende</label>
+
+            <div class="search-wrapper">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Téléphone, stop, trottoir, 311..."
+                    autocomplete="off"
+                >
+
+                <button id="clearSearchBtn" class="clear-btn" title="Effacer la recherche">
+                    ×
+                </button>
+            </div>
+
+            <div class="quick-actions">
+                <button id="showAllBtn" class="secondary-btn">Voir tout</button>
+                <button id="resetBtn" class="secondary-btn">Réinitialiser</button>
+            </div>
+
+            <div class="filters">
+            <button class="filter-btn active" data-category="all">Toutes</button>
+            <button class="filter-btn" data-category="administratif">Administratif</button>
+            <button class="filter-btn" data-category="stationnement">Stationnement</button>
+            <button class="filter-btn" data-category="circulation">Circulation</button>
+            <button class="filter-btn" data-category="equipement">Équipement</button>
+            <button class="filter-btn" data-category="detenteur">Détenteur</button>
+            <button class="filter-btn" data-category="cyclistes">Cyclistes</button>
+            <button class="filter-btn" data-category="passagers">Passagers</button>
+            <button class="filter-btn" data-category="piétons">Piétons</button>
+            <button class="filter-btn" data-category="navigation">Navigation</button>
+            <button class="filter-btn" data-category="autres">Autres lois</button>
+        </div>
+        </section>
+
+        <section class="results-info">
+            <p id="resultCount">Tape un mot-clé ou sélectionne une catégorie.</p>
+        </section>
+
+        <section id="resultsContainer" class="results-container">
+            <!-- Les résultats apparaîtront ici -->
+        </section>
+
+    </main>
+
+    <footer class="app-footer">
+        <p>Version test — application indépendante</p>
+    </footer>
+
+    <button id="backToTopBtn" class="back-to-top" title="Remonter en haut">
+    ↑
+</button>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
