@@ -14,6 +14,10 @@
   };
   const libelles = {
     "203.4":"Payer une nouvelle taxe avant la fin du temps autorisé, lorsque c’est interdit.",
+    "306.3":"Ne pas poursuivre sa route dans la direction indiquée par la flèche, y compris en franchissant le cas échéant une ligne de sécurité délimitant deux voies de circulation destinées aux véhicules empruntant la même direction.",
+    "252.a":"Stationner hors des cases de stationnement jusqu’à deux heures.",
+    "252.b":"Stationner hors des cases de stationnement pendant plus de deux heures, mais pas plus de quatre heures.",
+    "252.c":"Stationner hors des cases de stationnement pendant plus de quatre heures, mais pas plus de dix heures.",
     "314.2":"Dépasser par la droite en déboîtant puis en se rabattant sur des routes principales ou secondaires à plusieurs voies.",
     "314.3":"Dépasser par la droite en déboîtant puis en se rabattant sur des autoroutes et des semi-autoroutes à plusieurs voies.",
     "327.1":"Circuler sur une autoroute ou une semi-autoroute avec un motocycle dont la cylindrée n’est pas supérieure à 50 cm³ ou dont la puissance n’excède pas 4 kW.",
@@ -39,8 +43,8 @@
     ["703.4","cyclistes","Circuler sans le compteur de vitesse prescrit.",20,["cyclomoteur","compteur"]],
     ["3101","autres","Dissimuler son visage dans les lieux publics ou privés accessibles au public, sans qu’une exception légale ne s’applique.",100,["LIDV","dissimulation visage"]],
     ["3102","autres","Dissimuler son visage sans autorisation dans les lieux publics.",100,["LIDV","dissimulation visage"]],
-    ["9003.1","autres","Jeter ou abandonner un petit déchet individuel hors des collectes prévues.",80,["déchet","mégot","littering"]],
-    ["9003.2","autres","Jeter ou abandonner plusieurs petits déchets, d’un volume total inférieur à 17 litres, hors des collectes prévues.",100,["déchets","17 litres"]],
+    ["9003.1","autres","Jeter ou abandonner un déchet individuel de petite taille (mégot, emballage, canette, bouteille, chewing-gum ou journal) hors des collectes prévues.",80,["déchet","mégot","littering"]],
+    ["9003.2","autres","Jeter ou abandonner plusieurs petits déchets, à partir de deux pièces, d’un volume total inférieur à 17 litres, hors des collectes prévues.",100,["déchets","17 litres"]],
     ["9003.3","autres","Éliminer des déchets urbains d’un volume de 17 à 35 litres hors des collectes prévues.",150,["déchets","35 litres"]],
     ["9003.4","autres","Éliminer des déchets urbains d’un volume supérieur à 35 litres et allant jusqu’à 110 litres hors des collectes prévues.",250,["déchets","110 litres"]]
   ];
@@ -57,6 +61,9 @@
     }
   }
   const a12011=amendes.find(a=>String(a.numero)==="12011");
-  if (a12011) a12011.remarqueVerification="Montant à contrôler dans la source officielle.";
+  if (a12011) {
+    a12011.montant = null;
+    a12011.remarqueVerification = "Montant non indiqué dans le livret AO 2026 V2 transmis (page 19). Ne pas déduire le montant de la version précédente.";
+  }
   console.info("Correctif AO 2026 chargé :",amendes.length,"entrées.");
 })();
