@@ -70,7 +70,7 @@ function afficherResultats() {
         card.innerHTML = `
             <div class="ao-card-header">
                 <span class="ao-number">AO ${amende.numero}</span>
-                <span class="ao-amount">${amende.montant} CHF</span>
+                <span class="ao-amount">${amende.montant == null ? 'Montant non indiqué' : amende.montant + ' CHF'}</span>
             </div>
 
             <p class="ao-description">${amende.description}</p>
@@ -97,7 +97,8 @@ function copierAmende(numero) {
         return;
     }
 
-    const texte = `AO ${amende.numero} - ${amende.description} - ${amende.montant} CHF`;
+    const montantTexte = amende.montant == null ? "Montant non indiqué" : `${amende.montant} CHF`;
+    const texte = `AO ${amende.numero} - ${amende.description} - ${montantTexte}`;
 
     navigator.clipboard.writeText(texte)
         .then(() => {
